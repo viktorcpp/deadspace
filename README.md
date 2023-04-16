@@ -7,6 +7,7 @@
 - Health infinite
 - Oxygen infinite
 - Inventory: Credits + Nodes
+- Full weapon reload independed from ammo in inventory
 - Starship Health infinite
 - Manual game/process pause
 - Game speed [5 on Num7
