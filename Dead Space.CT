@@ -617,6 +617,60 @@ unregistersymbol( isWeaponNoOverheatEnable )
 
 </AssemblerScript>
             </CheatEntry>
+            <CheatEntry>
+              <ID>115</ID>
+              <Description>"FIX credits limit 999.999"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+/*
+Dead Space.exe+1A024A - 7C 05       - jl "Dead Space.exe"+1A0251
+Dead Space.exe+1A024C - B9 3F420F00 - mov ecx,000F423F
+Dead Space.exe+1A0251 - 89 48 48    - mov [eax+48],ecx
+
+Dead Space.exe+7DAA - 7C 05         - jl "Dead Space.exe"+7DB1
+Dead Space.exe+7DAC - B8 3F420F00   - mov eax,000F423F
+Dead Space.exe+7DB1 - 89 41 48      - mov [ecx+48],eax
+
+Dead Space.exe+11573C - 7C 05          - jl "Dead Space.exe"+115743
+Dead Space.exe+11573E - B8 3F420F00    - mov eax,000F423F
+Dead Space.exe+115743 - 89 81 E40C0000 - mov [ecx+00000CE4],eax
+
+*/
+
+"Dead Space.exe"+1A024C:
+    nop
+    nop
+    nop
+    nop
+    nop
+
+"Dead Space.exe"+7DAC:
+    nop
+    nop
+    nop
+    nop
+    nop
+
+"Dead Space.exe"+11573E:
+    nop
+    nop
+    nop
+    nop
+    nop
+
+[DISABLE]
+
+"Dead Space.exe"+1A024C:
+    db B9 3F 42 0F 00
+
+"Dead Space.exe"+7DAC:
+    db B8 3F 42 0F 00
+
+"Dead Space.exe"+11573E:
+    db B8 3F 42 0F 00
+</AssemblerScript>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
@@ -697,7 +751,7 @@ writeBytes( "isStasisInfEnable", 00 )
             <CheatEntry>
               <ID>76</ID>
               <Description>"X"</Description>
-              <LastState Value="-3.426074028" RealAddress="2F30E2F0"/>
+              <LastState Value="-188.6653595" RealAddress="27CA6510"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>[ptrHealth]+210</Address>
@@ -705,7 +759,7 @@ writeBytes( "isStasisInfEnable", 00 )
             <CheatEntry>
               <ID>77</ID>
               <Description>"Y"</Description>
-              <LastState Value="1.00999999" RealAddress="2F30E2F4"/>
+              <LastState Value="113.4013062" RealAddress="27CA6514"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>[ptrHealth]+214</Address>
@@ -713,7 +767,7 @@ writeBytes( "isStasisInfEnable", 00 )
             <CheatEntry>
               <ID>78</ID>
               <Description>"Z"</Description>
-              <LastState Value="-4.270623684" RealAddress="2F30E2F8"/>
+              <LastState Value="-4.092990398" RealAddress="27CA6518"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>[ptrHealth]+218</Address>
@@ -759,7 +813,7 @@ writeBytes( "isOxygenInfEnable", 00 )
           <ID>111</ID>
           <Description>"Inventory"</Description>
           <Options moDeactivateChildrenAsWell="1"/>
-          <LastState Value="" RealAddress="012A001B"/>
+          <LastState Value="" Activated="1" RealAddress="2ADE001B"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Array of byte</VariableType>
@@ -769,7 +823,7 @@ writeBytes( "isOxygenInfEnable", 00 )
             <CheatEntry>
               <ID>112</ID>
               <Description>"Nodes"</Description>
-              <LastState Value="60" RealAddress="2F30CB44"/>
+              <LastState Value="52" RealAddress="27CA4D64"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>+0</Address>
@@ -780,7 +834,7 @@ writeBytes( "isOxygenInfEnable", 00 )
             <CheatEntry>
               <ID>113</ID>
               <Description>"Credits"</Description>
-              <LastState Value="999999" RealAddress="2F30D294"/>
+              <LastState Value="1090300" RealAddress="27CA54B4"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>+0</Address>
@@ -810,7 +864,7 @@ writeBytes( "isFullReloadEnable", 00 )
         <CheatEntry>
           <ID>49</ID>
           <Description>"Starship Health"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 {$lua}
@@ -827,7 +881,7 @@ writeBytes( "isStarshipHealthEnable", 00 )
         <CheatEntry>
           <ID>88</ID>
           <Description>"Starship Wpn No Overheat"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 {$lua}
@@ -844,7 +898,7 @@ writeBytes( "isWeaponNoOverheatEnable", 00 )
         <CheatEntry>
           <ID>41</ID>
           <Description>"PAUSE"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>FF00FF</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
@@ -895,14 +949,14 @@ speedhack_setSpeed(1)
       <ID>74</ID>
       <Description>"DEBUG values  ▼"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Value="" RealAddress="00000000"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <Color>000080</Color>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>42</ID>
           <Description>"Ammo Clip +684"</Description>
-          <LastState Value="32AD9AB0" RealAddress="25A60024"/>
+          <LastState Value="049D0790" RealAddress="263F0024"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -911,7 +965,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>43</ID>
               <Description>"value"</Description>
-              <LastState Value="175" RealAddress="32ADA134"/>
+              <LastState Value="9" RealAddress="049D0E14"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>+0</Address>
@@ -924,7 +978,7 @@ speedhack_setSpeed(1)
         <CheatEntry>
           <ID>18</ID>
           <Description>"Ammo in inv ADDR +31C"</Description>
-          <LastState Value="00000000" RealAddress="25A7001F"/>
+          <LastState Value="00000000" RealAddress="2698001F"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -945,7 +999,7 @@ speedhack_setSpeed(1)
         <CheatEntry>
           <ID>20</ID>
           <Description>"Stasis ADDR +128"</Description>
-          <LastState Value="2F30E0E0" RealAddress="25A90037"/>
+          <LastState Value="27CA6300" RealAddress="269A0037"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -954,7 +1008,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>44</ID>
               <Description>"value"</Description>
-              <LastState Value="160" RealAddress="2F30E208"/>
+              <LastState Value="160" RealAddress="27CA6428"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -965,7 +1019,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>45</ID>
               <Description>"value"</Description>
-              <LastState Value="160" RealAddress="2F30E20C"/>
+              <LastState Value="160" RealAddress="27CA642C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -978,7 +1032,7 @@ speedhack_setSpeed(1)
         <CheatEntry>
           <ID>28</ID>
           <Description>"Player coords"</Description>
-          <LastState Value="2F30E230" RealAddress="25B60013"/>
+          <LastState Value="27CA6450" RealAddress="26D20013"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -987,7 +1041,7 @@ speedhack_setSpeed(1)
         <CheatEntry>
           <ID>50</ID>
           <Description>"Health PTR +124"</Description>
-          <LastState Value="2F30E0E0" RealAddress="25B70035"/>
+          <LastState Value="27CA6300" RealAddress="26D30035"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -996,7 +1050,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>63</ID>
               <Description>"value"</Description>
-              <LastState Value="200" RealAddress="2F30E1FC"/>
+              <LastState Value="200" RealAddress="27CA641C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -1007,7 +1061,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>91</ID>
               <Description>"value"</Description>
-              <LastState Value="200" RealAddress="2F30E200"/>
+              <LastState Value="200" RealAddress="27CA6420"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -1018,7 +1072,7 @@ speedhack_setSpeed(1)
             <CheatEntry>
               <ID>89</ID>
               <Description>"value"</Description>
-              <LastState Value="1" RealAddress="2F30E204"/>
+              <LastState Value="1" RealAddress="27CA6424"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -1064,7 +1118,7 @@ MemrecAutoDeactivate(memrec)
         <CheatEntry>
           <ID>64</ID>
           <Description>"Oxygen PTR +6c +70"</Description>
-          <LastState Value="00000000" RealAddress="25B80029"/>
+          <LastState Value="00000000" RealAddress="2ADD0029"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1103,7 +1157,7 @@ MemrecAutoDeactivate(memrec)
         <CheatEntry>
           <ID>114</ID>
           <Description>"Inventory ADDR v2"</Description>
-          <LastState Value="2F30C5B0" RealAddress="012A001B"/>
+          <LastState Value="27CA47D0" RealAddress="2ADE001B"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1112,7 +1166,7 @@ MemrecAutoDeactivate(memrec)
         <CheatEntry>
           <ID>72</ID>
           <Description>"Starship Health ADDR +794"</Description>
-          <LastState Value="390283AC" RealAddress="25BA002F"/>
+          <LastState Value="2E82967C" RealAddress="2ADF002F"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1121,7 +1175,7 @@ MemrecAutoDeactivate(memrec)
             <CheatEntry>
               <ID>73</ID>
               <Description>"value health"</Description>
-              <LastState Value="1.753678935E19" RealAddress="39028B40"/>
+              <LastState Value="199" RealAddress="2E829E10"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -1132,7 +1186,7 @@ MemrecAutoDeactivate(memrec)
             <CheatEntry>
               <ID>87</ID>
               <Description>"value wpn overheat"</Description>
-              <LastState Value="1.746623383E31" RealAddress="39028BA4"/>
+              <LastState Value="0" RealAddress="2E829E74"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>+0</Address>
@@ -1180,6 +1234,31 @@ MemrecAutoDeactivate(memrec)
         <Byte>9A</Byte>
         <Byte>FE</Byte>
         <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov ecx,000F423F</Description>
+      <AddressString>Dead Space.exe+1A024C</AddressString>
+      <Before>
+        <Byte>42</Byte>
+        <Byte>0F</Byte>
+        <Byte>00</Byte>
+        <Byte>7C</Byte>
+        <Byte>05</Byte>
+      </Before>
+      <Actual>
+        <Byte>B9</Byte>
+        <Byte>3F</Byte>
+        <Byte>42</Byte>
+        <Byte>0F</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>C6</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
